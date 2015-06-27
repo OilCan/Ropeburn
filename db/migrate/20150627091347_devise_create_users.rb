@@ -8,6 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## oauth fields
       t.string :oauth_provider, null: true
       t.string :oauth_uid,      null: true
+      t.string :github_token,   null: true
 
       ## Recoverable
       t.string   :reset_password_token
