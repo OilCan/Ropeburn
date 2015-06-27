@@ -1,0 +1,19 @@
+footer
+  div.container
+    div.row
+      div.col-xs-4
+        ul.list-inline
+          li.text-muted &copy; Oil Can
+          li = link_to 'About', about_path
+          li = link_to 'Contact', contact_path
+      div.col-xs-4.text-center
+        /li = link_to '#' do
+          = image_tag "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png", alt: "Facebook", size: '25x25'
+        = link_to icon('twitter'), 'https://twitter.com/oilcan_io'
+
+      div.col-xs-4.text-right
+        ul.list-inline
+          li = link_to 'Sign Out', destroy_user_session_path, method: :delete
+          li = link_to 'Terms of Service', tos_path
+          li = link_to 'Privacy Policy', privacy_path
+          li = link_to icon('github', 'Fork'), 'https://github.com/oilcan/ropeburn'

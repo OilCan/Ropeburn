@@ -1,0 +1,27 @@
+nav.navbar.navbar-inverse.navbar-static-top role="navigation"
+  div.container
+    div.navbar-header
+      button.navbar-toggle collapsed type="button" data-toggle="#navbar" aria-expanded="false" aria-controls="navbar"
+        span.ar-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      - if request.path == '/'
+        a.navbar-brand href='http://oilcan.io'
+          'Another drop from the Oil Can
+      - else
+        a.navbar-brand href=root_path
+          /= image_tag 'logo.svg', alt: t('navigation_name')
+          = t('navigation_name')
+    div.collapse.navbar-collapse id="navbar"
+      ul.nav.navbar-nav.navbar-right.main-nav
+        - if signed_in?
+          li = link_to 'My Account', user_path
+          - if current_user.admin?
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false" Admin
+              ul.dropdown-menu role="menu"
+                li = link_to icon('cog', 'Organization'), '#'
+
+        - else
+          li = link_to icon('github', 'Sign Up with GitHub'), user_omniauth_authorize_path(:github)
