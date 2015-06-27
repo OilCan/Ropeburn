@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma', '~> 2.11.1'
 
 # High-level Application Features
+gem 'dotenv-rails', '~> 2.0', require: 'dotenv/rails-now'
 gem 'devise', '~> 3.2'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 gem 'omniauth-github', '~> 1.1.2'
@@ -45,6 +46,8 @@ gem 'mandrill-api', '~> 1.0.53'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
+
+gem 'awesome_print'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
