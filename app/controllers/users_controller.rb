@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def show
+    @github = GitHub.new(current_user)
   end
 
   def edit

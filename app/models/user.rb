@@ -5,8 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [ :github ]
 
+  has_many :user_repositories, inverse_of: :user
+  has_many :repositories, through: :user_repositories
+
   def github_client
-    return nil if github_token.nil?
+    raise 'User does not have a GitHub token' if github_token.nil?
     @github_client ||= Octokit::Client.new(access_token: github_token)
   end
 
@@ -23,16 +26,18 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(oauth_provider: auth.provider, oauth_uid: auth.uid).first_or_create do |user|
-      if user.respond_to?("#{auth.provider}_token=")
-        user.send("#{auth.provider}_token=", auth["credentials"]["token"])
-      end
+    user = where(oauth_provider: auth.provider, oauth_uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password  = Devise.friendly_token[0,20]
       user.full_name = auth.info.name   # assuming the user model has a name
       user.avatar = auth.info.image # assuming the user model has an image
     end
+
+    if user.respond_to?("#{auth.provider}_token=")
+      user.send("#{auth.provider}_token=", auth["credentials"]["token"])
+      user.save!
+    end
+
+    user
   end
-
-
 end

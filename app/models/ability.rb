@@ -9,5 +9,7 @@ class Ability
     end
 
     can :manage, User, id: user.id
+
+    can :manage, Repository
   end
 end

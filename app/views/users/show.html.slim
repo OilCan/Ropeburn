@@ -1,3 +1,10 @@
 h1 Your Account
 
 p = @user.email
+
+p Right now, we install an organization wide hook.
+div.list-group
+- @github.organizations.each do |org|
+  = link_to org[:login], from_github_org_repositories_path(org[:login]), method: :post, class: 'list-group-item'
+
+

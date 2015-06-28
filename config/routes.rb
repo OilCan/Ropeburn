@@ -16,6 +16,14 @@ Rails.application.routes.draw do
 
   resource :user, path: '/account', only: [ :show, :edit, :update ]
 
+  post 'webhook' => 'webhook#incoming'
+
+  resources :repositories do
+    collection do
+      post 'from_github_org/:github_id' => :from_github_org, as: :from_github_org
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
