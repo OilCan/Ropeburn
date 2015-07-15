@@ -1,6 +1,8 @@
 # Ropeburn
 
-A tool to reduce friction around pull requests.
+An inbox for Pull Requests!
+
+Lets reduce friction around pull requests.
 
 ## What friction?
 
@@ -44,9 +46,14 @@ When a new Pull Request is submitted, a `PullRequest` model is created (which `b
 
 The `PullRequest` has some basic statistics applied, and imports the description (and subsequent changes, only preserving the most recent).
 
-It has an `analyzed` attribute to signal the need to be analyzed (with a cooldown delay, so any changes to the description and what not 
+* It has an `analyzed` attribute to signal the need to be analyzed (with a cooldown delay, so any changes to the description and what not are quieted)
+* It has a `ready_to_review` boolean attribute, defaulting to true(?), which is set by analysis
 
 ## TODO
 
+* [ ] Finish PullRequest Model
+* [ ] Write Analysis Pipeline
 * [ ] Import list of repositories the user is watching from the GitHub API
 * [ ] How to determine when a PR is ready for review?
+* [ ] Notifiers when a PR changes to "ready to review"
+* [ ] Determine when a review is done (presence of :ship:, "lgtm", etc)
