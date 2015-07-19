@@ -1,6 +1,6 @@
 # Ropeburn
 
-An inbox for Pull Requests!
+Inbox for Pull Requests!
 
 Lets reduce friction around pull requests.
 
@@ -48,6 +48,13 @@ The `PullRequest` has some basic statistics applied, and imports the description
 
 * It has an `analyzed` attribute to signal the need to be analyzed (with a cooldown delay, so any changes to the description and what not are quieted)
 * It has a `ready_to_review` boolean attribute, defaulting to true(?), which is set by analysis
+
+## Contributing
+
+Read the [SETUP.md](SETUP.md) guide, it will detail how to get the app setup and working.
+
+We aren't using tickets yet, because it's still a bit early on. We probably
+should. Feel free to convert the TODOs into Issues. I'm pretty bad at that.
 
 ## TODO
 
