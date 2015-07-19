@@ -57,6 +57,19 @@ Now you can load Ropeburn by hitting http://localhost/ -- almost magic. _Almost_
 
 Since Ropeburn uses GitHub OAuth, you'll need to register an application. This is pretty painless.
 
+1. Go to https://github.com/settings/developers
+2. Register a new application
+3. Set the Authorization callback URL to `http://$ROPEBURN_HOST/users/auth/github/callback` (for `ROPEBURN_HOST`, see below on ngrok!)
+4. Copy the client ID and secret, put it in your .env file:
+
+Environment Variables should look like this:
+
+```shell
+ROPEBURN_HOST=your-subdomain.ngrok.io
+ROPEBURN_GITHUB_KEY=deadbeef
+ROPEBURN_GITHUB_SECRET=the_github_secret
+ROPEBURN_WEBHOOK_SECRET=some_shared_secret_just_write_something
+```
 
 ## nGrok makes your life better
 
@@ -75,23 +88,17 @@ Now you have a URL all ready to go! Use this for the webhook URL, and GitHub can
 
 Make sure that you have a `github_webhook_secret` configured (defaults to `ENV["ROPEBURN_WEBHOOK_SECRET"])
 
+Set the environment `ROPEBURN_HOST` to your ngrok subdomain. Using
+[`rbenv-vars`](https://github.com/sstephenson/rbenv-vars) is recommended for
+this, but the project is already using
+[dotenv](https://github.com/bkeepers/dotenv) so you can just use a `.env` file
+in the project root.
+
+Now, load the site and use it through your ngrok subdomain, instead of through Pow's `ropeburn.dev` URL.
+
+
 ## Making it all work!
 
-The demo script in `db/seeds.rb` should have everything to get you going. You can set this up by simply running:
+You should be able to just load it up, and sign in through GitHub
 
-```shell
-bundle install
-bundle exec rake db:reset
-```
-
-If you then visit [getstarting.dev](http://getstarting.dev) (make sure you
-installed Pow!) you can sign in as an admin with the following accounts:
-
-* jay@getstarting.com - test1234
-* cory@getstarting.com - test1234
-
-Or the non-admin:
-
-* bob_hope@getstarting.com - still living
-
-There are tracks and teams already created. Click around and explore!
+After that, pick an Organization and Ropeburn will install the webhook.
