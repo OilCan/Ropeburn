@@ -14,6 +14,10 @@ class Repository < ActiveRecord::Base
     client = user.github_client
   end
 
+  def to_param
+    full_name
+  end
+
   protected
 
   def check_if_webhook_installed

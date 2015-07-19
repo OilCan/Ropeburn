@@ -31,6 +31,10 @@ class GitHub
     install_hook_if_needed(org_id, forward_endpoint)
   end
 
+  def webhook_url
+    Rails.application.routes.url_helpers.webhook_url
+  end
+
   protected
 
   def setup_repositories(user, org_id)
@@ -71,10 +75,6 @@ class GitHub
         active: true
       }
     )
-  end
-
-  def webhook_url
-    Rails.application.routes.url_helpers.webhook_url
   end
 
   def webhook_events

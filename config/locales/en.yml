@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  global_page_title: "Ropeburn: Inbox for Pull Requests"
+  navigation_name: "Ropeburn"
+  organization_setup_complete: "GitHub Webhooks have been setup for this organization!"
+  organization_setup_failed: "Unable to setup GitHub Webhooks. Please try again later!"

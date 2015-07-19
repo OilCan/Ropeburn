@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20150628082005) do
     t.datetime "updated_at",                      null: false
   end
 
+  add_index "repositories", ["full_name"], name: "index_repositories_on_full_name", unique: true, using: :btree
+
   create_table "user_repositories", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "repository_id"

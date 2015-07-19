@@ -39,8 +39,9 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.default_url_options = { host: 'ropeburn.dev' }
-  config.action_mailer.asset_host = 'http://ropeburn.dev'
+  ropeburn_host = ENV['ROPEBURN_HOST'] || 'ropeburn.dev'
+  config.action_mailer.default_url_options = { host: ropeburn_host }
+  config.action_mailer.asset_host = "http://#{ropeburn_host}"
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
@@ -49,10 +50,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "127.0.0.1",
     port:    1025, # Use mailcatcher
-    domain:  'ropeburn.dev',
+    domain:  ropeburn_host,
     enable_starttls_auto: false,
   }
 
   Rails.application.routes.default_url_options = config.action_mailer.default_url_options
-
 end

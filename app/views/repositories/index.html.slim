@@ -2,6 +2,6 @@ h1 = @repositories.model_name.human
 
 div.list-group
 - @repositories.each do |repo|
-  = link_to repo.name, '#', class: 'list-group-item'
+  = link_to repo.name, repository_path(repo), class: 'list-group-item'
 
 
