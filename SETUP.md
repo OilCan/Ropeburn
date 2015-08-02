@@ -53,6 +53,14 @@ ln -sf ~/path/to/ropeburn default
 
 Now you can load Ropeburn by hitting http://localhost/ -- almost magic. _Almost_. Instead, just useful code!
 
+### Setting up the database
+
+Init your database!
+
+```shell
+bundle exec rake db:setup
+```
+
 ## Setting up the GitHub App
 
 Since Ropeburn uses GitHub OAuth, you'll need to register an application. This is pretty painless.
